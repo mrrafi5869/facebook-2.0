@@ -8,7 +8,8 @@ import { faCloudUpload, faUpload } from "@fortawesome/free-solid-svg-icons";
 
 const Register = () => {
   const [error, setError] = useState("");
-  const { createUser, updateUser } = useContext(AuthContext);
+  const [user, setUser] = useState([]);
+  const { createUser, updateUser,setLoading, loading } = useContext(AuthContext);
   const navigate = useNavigate();
   const imageHostKey = process.env.REACT_APP_imgbb_key;
   const handleSignUp = (event) => {
@@ -46,31 +47,49 @@ const Register = () => {
               .then(() => {})
               .catch((err) => {
                 setError(err);
-              });
+            });
+            saveUser(name, data.data.url)
           })
           .catch((err) => {
             setError(err);
+            setLoading(false);
           });
         }
       });
+      const saveUser = (name, photo) => {
+        const user = {name, photo};
+        fetch('http://localhost:5000/user', {
+          method: "POST",
+          headers: {
+              'content-type': 'application/json'
+          },
+          body: JSON.stringify(user)
+        })
+        .then(res => res.json())
+        .then(data => {
+          console.log(data);
+        })
+      };
   };
   return (
     <form
-      className="bg-white w-96 mx-auto my-32 rounded-[30px]"
+      className="bg-white w-96 mx-auto my-32 rounded-[30px] text-center"
       onSubmit={handleSignUp}
     >
-      <h1 className="my-6 text-3xl font-semibold">SignUp</h1>
+      <h1 className="my-6 text-3xl text-black uppercase font-semibold">SignUp</h1>
       <input
         type="name"
         name="name"
         placeholder="Your Name"
         className="input input-bordered w-full max-w-xs mt-3 rounded-xl p-7"
+        required
       />
       <input
         type="email"
         name="email"
         placeholder="Your Email"
         className="input input-bordered w-full max-w-xs mt-3 rounded-xl p-7"
+        required
       />
       <input
         id="image"
@@ -83,10 +102,12 @@ const Register = () => {
         name="password"
         placeholder="*****"
         className="input input-bordered w-full max-w-xs mt-3 rounded-xl p-7"
+        required
       />
       <label
         htmlFor="image"
         className="image-label w-full border-2 border-blue-400 block mx-auto border-dashed max-w-xs mt-3 rounded-xl p-7 hover:cursor-pointer"
+        required
       >
         <div>
           <h4 className="text-2xl text-black font-semibold">Profile Picture</h4>
@@ -99,9 +120,9 @@ const Register = () => {
         </div>
       </label>
       <p className="text-red-400">{error.message}</p>
-      <button className="btn rounded-full w-full btn-primary max-w-xs my-5">
-        SignUp
-      </button>
+      <div>
+        <button className="btn btn-primary rounded-full w-full max-w-xs my-5">{loading ? <button className="btn btn-square loading"></button> : "SignUp"}</button>
+      </div>     
       <p className="text-sky-500 my-3">
         Already have an Account?Please{" "}
         <Link

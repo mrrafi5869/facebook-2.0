@@ -14,15 +14,15 @@ const Post = () => {
             <hr className='border border-gray-500' />
             <div className='flex justify-around my-4'>
                 <div className='flex items-center'>
-                    <FontAwesomeIcon icon={faVideo} className="mr-2 text-2xl"></FontAwesomeIcon>
+                    <FontAwesomeIcon icon={faVideo} className="mr-2 text-2xl text-red-500"></FontAwesomeIcon>
                     <p className='font-semibold'>Live Video</p>
                 </div>
                 <div className='flex items-center'>
-                    <FontAwesomeIcon icon={faImage} className="mr-2 text-2xl"></FontAwesomeIcon>
+                    <FontAwesomeIcon icon={faImage} className="mr-2 text-2xl text-green-400"></FontAwesomeIcon>
                     <p className='font-semibold'>Photo/Video</p>
                 </div>
                 <div className='flex items-center'>
-                    <FontAwesomeIcon icon={faFaceSmile} className="mr-2 text-2xl"></FontAwesomeIcon>
+                    <FontAwesomeIcon icon={faFaceSmile} className="mr-2 text-2xl text-yellow-300"></FontAwesomeIcon>
                     <p className='font-semibold'>Feeling/activity</p>
                 </div>
             </div>

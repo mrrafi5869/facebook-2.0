@@ -3,11 +3,19 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useContext } from "react";
 import './Navbar.css'
 import { FaHome, FaVideo, FaShoppingCart, FaLayerGroup, FaGamepad, FaFacebook, } from 'react-icons/fa';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../contexts/AuthProvider/AuthProvider";
 
 const Navbar = () => {
-  const {user} = useContext(AuthContext);
+  const {user, logOut} = useContext(AuthContext);
+  const navigate = useNavigate();
+  const loggingOut = () => {
+    logOut()
+    .then(() => {
+      navigate("/register")
+    })
+    .catch(err => console.error(err));
+  }
   return (
     <div className="navbar bg-gray-800 px-5 py-2">
       <div className="navbar-start">
@@ -61,7 +69,7 @@ const Navbar = () => {
       </div>
       <ul className="navbar-end">
         <li>
-            <Link className="navbar-end-icon bg-gray-600 mx-2 text-white"><FontAwesomeIcon icon={faListDots}></FontAwesomeIcon></Link>
+            <Link className="navbar-end-icon bg-gray-600 mx-2 text-white" onClick={loggingOut}><FontAwesomeIcon icon={faListDots}></FontAwesomeIcon></Link>
         </li>
         <li>
             <Link className="navbar-end-icon bg-gray-600 mx-2 text-white"><FontAwesomeIcon icon={faMessage}></FontAwesomeIcon></Link>

@@ -7,9 +7,9 @@ import RightSideNav from '../components/Home/RightSideNav/RightSideNav';
 
 const Main = () => {
     return (
-        <div className=''>
+        <div>
             <Navbar></Navbar>
-            <div className='grid grid-cols-12 mx-4'>
+            <div className='grid grid-cols-12'>
                 <div className='col-span-2'>
                     <LeftSideNav></LeftSideNav>
                 </div>
