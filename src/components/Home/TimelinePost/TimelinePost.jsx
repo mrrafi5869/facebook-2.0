@@ -24,7 +24,7 @@ const TimelinePost = () => {
     <div className="my-6">
       {timelinePosts &&
         timelinePosts.map((post, index) => (
-          <div key={index} className="mx-auto my-4 bg-zinc-800 rounded-lg">
+          <div key={index} className="mx-auto my-4 bg-zinc-800 rounded-lg p-2">
             <div className="flex justify-between px-5 py-3">
               <div className="flex">
                 <img
@@ -69,6 +69,12 @@ const TimelinePost = () => {
                 ></FontAwesomeIcon>
                 Share
               </div>
+            </div>
+            <div className="flex mx-2 items-center">
+            <input type="text" placeholder="Type here" className="input input-bordered w-full h-10 rounded-lg" />
+              <button className="btn bg-blue-600 btn-active rounded-lg ml-2 btn-sm">Comment</button>
+            </div>
+            <div>
             </div>
           </div>
         ))}

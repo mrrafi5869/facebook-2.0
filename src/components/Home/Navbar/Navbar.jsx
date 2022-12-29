@@ -107,7 +107,6 @@ const Navbar = () => {
         <li>
           <Link
             className="navbar-end-icon bg-gray-600 mx-2 text-white"
-            onClick={loggingOut}
           >
             <FontAwesomeIcon icon={faListDots}></FontAwesomeIcon>
           </Link>
@@ -132,7 +131,7 @@ const Navbar = () => {
               >
                 ✕
               </label>
-              <div className="form-control">
+              <div className="form-control w-9/12 mx-auto">
               <label className="label">
                     <span className="label-text">Name</span>
                   </label>
@@ -178,6 +177,9 @@ const Navbar = () => {
                     className="input input-bordered w-full max-w-xs rounded-lg"
                     readOnly
                   />
+                  <label htmlFor="my-modal-3" onClick={loggingOut} className="btn w-80 btn-primary rounded-lg mt-3">                    
+                    LogOut
+                  </label>
               </div>
             </div>
           </div>
