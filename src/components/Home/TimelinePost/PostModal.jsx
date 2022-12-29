@@ -44,11 +44,11 @@ const PostModal = () => {
   };
   return (
     <div>
-      <input type="checkbox" id="my-modal-3" className="modal-toggle" />
+      <input type="checkbox" id="my-modal-1" className="modal-toggle" />
       <form className="modal" onSubmit={handlePost}>
         <div className="modal-box relative">
           <label
-            htmlFor="my-modal-3"
+            htmlFor="my-modal-1"
             className="btn btn-sm btn-circle absolute right-2 top-2"
           >
             ✕
@@ -98,7 +98,7 @@ const PostModal = () => {
             </div>
           </label>
           <button className="btn w-full btn-active btn-ghost my-3 rounded-lg">
-          <label htmlFor="my-modal-3">
+          <label htmlFor="my-modal-1">
             Post
           </label>
           </button>

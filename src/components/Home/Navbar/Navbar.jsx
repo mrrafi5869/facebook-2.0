@@ -19,7 +19,7 @@ import { AuthContext } from "../../../contexts/AuthProvider/AuthProvider";
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
-  const [userInfo, setUserInfo] = useState([]);
+  const [userInfo, setUserInfo] = useState({});
   useEffect(() => {
     fetch(`http://localhost:5000/user?email=${user?.email}`)
     .then(res => res.json())
@@ -77,7 +77,7 @@ const Navbar = () => {
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">
           <li>
-            <Link>
+            <Link to="/">
               <FaHome className="text-2xl text-gray-400 mx-7"></FaHome>
             </Link>
           </li>

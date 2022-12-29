@@ -55,7 +55,7 @@ const Post = () => {
           ></FontAwesomeIcon>
           <p className="font-semibold">Live Video</p>
         </button>
-        <label htmlFor="my-modal-3" className="btn btn-ghost flex items-center">
+        <label htmlFor="my-modal-1" className="btn btn-ghost flex items-center">
           <FontAwesomeIcon
             icon={faImage}
             className="mr-2 text-2xl text-green-400"
