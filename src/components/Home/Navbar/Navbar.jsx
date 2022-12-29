@@ -4,7 +4,7 @@ import {
   faMessage,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./Navbar.css";
 import {
   FaHome,
@@ -19,6 +19,15 @@ import { AuthContext } from "../../../contexts/AuthProvider/AuthProvider";
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
+  const [userInfo, setUserInfo] = useState([]);
+  useEffect(() => {
+    fetch(`http://localhost:5000/user?email=${user?.email}`)
+    .then(res => res.json())
+    .then(data => {
+      console.log(data);
+      setUserInfo(data)
+    })
+  } ,[userInfo])
   const navigate = useNavigate();
   const loggingOut = () => {
     logOut()
@@ -114,9 +123,6 @@ const Navbar = () => {
           </Link>
         </li>
         <li>
-          {/* The button to open modal */}
-
-          {/* Put this part before </body> tag */}
           <input type="checkbox" id="my-modal-3" className="modal-toggle" />
           <div className="modal">
             <div className="modal-box relative">
@@ -126,13 +132,53 @@ const Navbar = () => {
               >
                 ✕
               </label>
-              <h3 className="text-lg font-bold">
-                Congratulations random Internet user!
-              </h3>
-              <p className="py-4">
-                You've been selected for a chance to get one year of
-                subscription to use Wikipedia for free!
-              </p>
+              <div className="form-control">
+              <label className="label">
+                    <span className="label-text">Name</span>
+                  </label>
+                  <input
+                    type="name"
+                    placeholder={user?.uid && user?.displayName}
+                    className="input input-bordered w-full max-w-xs rounded-lg"
+                    readOnly
+                  />
+                <label className="label">
+                    <span className="label-text">Email</span>
+                  </label>
+                  <input
+                    type="email"
+                    placeholder={user?.uid && user?.email}
+                    className="input input-bordered w-full max-w-xs rounded-lg"
+                    readOnly
+                  />
+                <label className="label">
+                    <span className="label-text">Phone</span>
+                  </label>
+                  <input
+                    type="text"
+                    placeholder={userInfo.number}
+                    className="input input-bordered w-full max-w-xs rounded-lg"
+                    readOnly
+                  />
+                <label className="label">
+                    <span className="label-text">Address</span>
+                  </label>
+                  <input
+                    type="text"
+                    placeholder={userInfo.address}
+                    className="input input-bordered w-full max-w-xs rounded-lg"
+                    readOnly
+                  />
+                <label className="label">
+                    <span className="label-text">Versity</span>
+                  </label>
+                  <input
+                    type="text"
+                    placeholder={userInfo.versity}
+                    className="input input-bordered w-full max-w-xs rounded-lg"
+                    readOnly
+                  />
+              </div>
             </div>
           </div>
         </li>
@@ -141,7 +187,7 @@ const Navbar = () => {
             <div className="avatar online hover:cursor-pointer">
               <div className="w-10 rounded-full">
                 <img
-                  src={user?.uid && user.photoURL}
+                  src={user?.uid && user?.photoURL}
                   className="w-10 h-10 rounded-full"
                   alt=""
                 />

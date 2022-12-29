@@ -34,7 +34,7 @@ const Post = () => {
     <div className="my-5 bg-zinc-800 p-3 rounded-lg">
       <form onSubmit={handlePost} className="flex items-center mb-3">
         <img
-          src={user?.uid && user.photoURL}
+          src={user?.uid && user?.photoURL}
           className="w-10 h-9 rounded-full mr-3"
           alt=""
         />
