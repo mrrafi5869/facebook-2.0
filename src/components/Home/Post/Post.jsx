@@ -10,20 +10,42 @@ import PostModal from "../TimelinePost/PostModal";
 
 const Post = () => {
   const { user } = useContext(AuthContext);
+  const handlePost = (event) => {
+    event.preventDefault();
+    const form = event.target;
+    const status = form.status.value;
+    const statusText = {status};
+    fetch("http://localhost:5000/status", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(statusText),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        if(data.acknowledged){
+            form.reset();
+        }
+      });
+  };
   return (
     <div className="my-5 bg-zinc-800 p-3 rounded-lg">
-      <div className="flex items-center mb-3">
+      <form onSubmit={handlePost} className="flex items-center mb-3">
         <img
           src={user?.uid && user.photoURL}
-          className="w-10 h-10 rounded-full mr-3"
+          className="w-10 h-9 rounded-full mr-3"
           alt=""
         />
         <input
           type="text"
+          name="status"
           placeholder={`What's On your mind ${user?.uid && user.displayName}?`}
           className="input w-full bg-gray-700 rounded-full h-10"
         />
-      </div>
+        <button className="btn btn-sm h-10 ml-2">Post</button>
+      </form>
       <hr className="border border-gray-500" />
       <div className="flex justify-around my-4">
         <button className="btn btn-ghost flex items-center">

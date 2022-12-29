@@ -1,21 +1,32 @@
-import { faBell, faListDots, faMessage } from "@fortawesome/free-solid-svg-icons";
+import {
+  faBell,
+  faListDots,
+  faMessage,
+} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useContext } from "react";
-import './Navbar.css'
-import { FaHome, FaVideo, FaShoppingCart, FaLayerGroup, FaGamepad, FaFacebook, } from 'react-icons/fa';
+import "./Navbar.css";
+import {
+  FaHome,
+  FaVideo,
+  FaShoppingCart,
+  FaLayerGroup,
+  FaGamepad,
+  FaFacebook,
+} from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../contexts/AuthProvider/AuthProvider";
 
 const Navbar = () => {
-  const {user, logOut} = useContext(AuthContext);
+  const { user, logOut } = useContext(AuthContext);
   const navigate = useNavigate();
   const loggingOut = () => {
     logOut()
-    .then(() => {
-      navigate("/register")
-    })
-    .catch(err => console.error(err));
-  }
+      .then(() => {
+        navigate("/register");
+      })
+      .catch((err) => console.error(err));
+  };
   return (
     <div className="navbar bg-gray-800 px-5 py-2">
       <div className="navbar-start">
@@ -40,45 +51,103 @@ const Navbar = () => {
             tabIndex={0}
             className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
           >
-            <li>
-              
-            </li>
+            <li></li>
           </ul>
         </div>
-        <Link><FaFacebook className="mr-3 text-4xl text-blue-400"></FaFacebook></Link>
-        <Link><input type="text" placeholder="Search Facebook" className="input w-full bg-gray-700 rounded-full h-10" /></Link>
+        <Link>
+          <FaFacebook className="mr-3 text-4xl text-blue-400"></FaFacebook>
+        </Link>
+        <Link>
+          <input
+            type="text"
+            placeholder="Search Facebook"
+            className="input w-full bg-gray-700 rounded-full h-10"
+          />
+        </Link>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">
           <li>
-            <Link><FaHome className="text-2xl text-gray-400 mx-7"></FaHome></Link>
+            <Link>
+              <FaHome className="text-2xl text-gray-400 mx-7"></FaHome>
+            </Link>
           </li>
           <li>
-            <Link><FaVideo className="text-2xl text-gray-400 mx-7"></FaVideo></Link>
+            <Link>
+              <FaVideo className="text-2xl text-gray-400 mx-7"></FaVideo>
+            </Link>
           </li>
           <li>
-            <Link><FaShoppingCart className="text-2xl text-gray-400 mx-7"></FaShoppingCart></Link>
+            <Link>
+              <FaShoppingCart className="text-2xl text-gray-400 mx-7"></FaShoppingCart>
+            </Link>
           </li>
           <li>
-            <Link><FaLayerGroup className="text-2xl text-gray-400 mx-7"></FaLayerGroup></Link>
+            <Link>
+              <FaLayerGroup className="text-2xl text-gray-400 mx-7"></FaLayerGroup>
+            </Link>
           </li>
           <li>
-            <Link><FaGamepad className="text-2xl text-gray-400 mx-7"></FaGamepad></Link>
+            <Link>
+              <FaGamepad className="text-2xl text-gray-400 mx-7"></FaGamepad>
+            </Link>
           </li>
         </ul>
       </div>
       <ul className="navbar-end">
         <li>
-            <Link className="navbar-end-icon bg-gray-600 mx-2 text-white" onClick={loggingOut}><FontAwesomeIcon icon={faListDots}></FontAwesomeIcon></Link>
+          <Link
+            className="navbar-end-icon bg-gray-600 mx-2 text-white"
+            onClick={loggingOut}
+          >
+            <FontAwesomeIcon icon={faListDots}></FontAwesomeIcon>
+          </Link>
         </li>
         <li>
-            <Link className="navbar-end-icon bg-gray-600 mx-2 text-white"><FontAwesomeIcon icon={faMessage}></FontAwesomeIcon></Link>
+          <Link className="navbar-end-icon bg-gray-600 mx-2 text-white">
+            <FontAwesomeIcon icon={faMessage}></FontAwesomeIcon>
+          </Link>
         </li>
         <li>
-            <Link className="navbar-end-icon bg-gray-600 mx-2 text-white"><FontAwesomeIcon icon={faBell}></FontAwesomeIcon></Link>
+          <Link className="navbar-end-icon bg-gray-600 mx-2 text-white">
+            <FontAwesomeIcon icon={faBell}></FontAwesomeIcon>
+          </Link>
         </li>
         <li>
-            <img src={user?.uid && user.photoURL} className="w-10 h-10 rounded-full" alt="" />
+          {/* The button to open modal */}
+
+          {/* Put this part before </body> tag */}
+          <input type="checkbox" id="my-modal-3" className="modal-toggle" />
+          <div className="modal">
+            <div className="modal-box relative">
+              <label
+                htmlFor="my-modal-3"
+                className="btn btn-sm btn-circle absolute right-2 top-2"
+              >
+                ✕
+              </label>
+              <h3 className="text-lg font-bold">
+                Congratulations random Internet user!
+              </h3>
+              <p className="py-4">
+                You've been selected for a chance to get one year of
+                subscription to use Wikipedia for free!
+              </p>
+            </div>
+          </div>
+        </li>
+        <li>
+          <label htmlFor="my-modal-3">
+            <div className="avatar online hover:cursor-pointer">
+              <div className="w-10 rounded-full">
+                <img
+                  src={user?.uid && user.photoURL}
+                  className="w-10 h-10 rounded-full"
+                  alt=""
+                />
+              </div>
+            </div>
+          </label>
         </li>
       </ul>
     </div>
