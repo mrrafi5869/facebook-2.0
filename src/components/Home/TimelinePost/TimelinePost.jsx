@@ -12,6 +12,7 @@ import { AuthContext } from "../../../contexts/AuthProvider/AuthProvider";
 const TimelinePost = () => {
   const { user } = useContext(AuthContext);
   const [timelinePosts, setTimelinePosts] = useState([]);
+  const [like, setLike] = useState(false);
   useEffect(() => {
     fetch("http://localhost:5000/posts")
       .then((res) => res.json())
@@ -19,7 +20,7 @@ const TimelinePost = () => {
         setTimelinePosts(data);
       });
   }, [timelinePosts]);
-  const handleLike = () => {};
+  console.log(like);
   return (
     <div className="my-6">
       {timelinePosts &&
@@ -48,7 +49,7 @@ const TimelinePost = () => {
             <img src={post.photo} className="w-[700px]" alt="" />
             <hr className="border border-gray-400 mt-10" />
             <div className="flex justify-between mb-2 p-5">
-              <div className="text-xl" onClick={handleLike}>
+              <div className={`text-xl ${like ? "text-blue-400" : ""}`} onClick={() => setLike(!like)}>
                 <FontAwesomeIcon
                   icon={faThumbsUp}
                   className="mr-2"

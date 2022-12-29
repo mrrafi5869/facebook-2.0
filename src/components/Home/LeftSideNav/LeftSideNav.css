@@ -1,0 +1,7 @@
+.left-side{
+    height: -webkit-max-content;
+    height: 100vh;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 5px;
+}

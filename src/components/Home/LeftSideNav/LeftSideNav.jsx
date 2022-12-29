@@ -7,7 +7,7 @@ import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
 const LeftSideNav = () => {
     const {user} = useContext(AuthContext);
     return (
-        <div className='bg-gray-800 p-3 h-full'>
+        <div className='bg-gray-800 p-3 h-full left-side'>
             <div className='flex items-center mb-6'>
                 <img src={user?.uid && user?.photoURL} alt="" className='w-9 h-9 rounded-full mr-2' />
                 <h2 className='text-white font-semibold'>{user?.uid && user.displayName}</h2>
