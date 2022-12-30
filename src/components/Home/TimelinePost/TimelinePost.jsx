@@ -8,6 +8,8 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../../contexts/AuthProvider/AuthProvider";
+import { PaperAirplaneIcon } from '@heroicons/react/24/solid'
+import { Link } from "react-router-dom";
 
 const TimelinePost = () => {
   const { user } = useContext(AuthContext);
@@ -20,7 +22,6 @@ const TimelinePost = () => {
         setTimelinePosts(data);
       });
   }, [timelinePosts]);
-  console.log(like);
   return (
     <div className="my-6">
       {timelinePosts &&
@@ -47,8 +48,14 @@ const TimelinePost = () => {
             </div>
             <p className="mx-5">{post.caption}</p>
             <img src={post.photo} className="w-[700px]" alt="" />
-            <hr className="border border-gray-400 mt-10" />
-            <div className="flex justify-between mb-2 p-5">
+            <div className="flex justify-between mt-2">
+              <span>
+                <p>Like</p>
+              </span>
+              <Link className="underline">Details</Link>
+            </div>
+            <hr className="border border-gray-400 mb-3" />
+            <div className="flex justify-between mb-2 px-5">
               <div className={`text-xl ${like ? "text-blue-400" : ""}`} onClick={() => setLike(!like)}>
                 <FontAwesomeIcon
                   icon={faThumbsUp}
@@ -71,10 +78,15 @@ const TimelinePost = () => {
                 Share
               </div>
             </div>
-            <div className="flex mx-2 items-center">
-            <input type="text" placeholder="Type here" className="input input-bordered w-full h-10 rounded-lg" />
-              <button className="btn bg-blue-600 btn-active rounded-lg ml-2 btn-sm">Comment</button>
-            </div>
+            <form className="flex mx-2 items-center">
+            <img
+                  src={user?.uid && user?.photoURL}
+                  className="w-10 h-10 rounded-full mr-3"
+                  alt=""
+                />
+            <input type="text" placeholder="Comment here" className="input input-bordered w-full h-10 rounded-lg" />
+              <button className="btn bg-blue-600 btn-active rounded-lg ml-1 btn-sm"><PaperAirplaneIcon className="h-6 w-6 text-white"></PaperAirplaneIcon></button>
+            </form>
             <div>
             </div>
           </div>

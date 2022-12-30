@@ -1,7 +1,6 @@
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useContext, useEffect, useState } from "react";
-import { useFetcher } from "react-router-dom";
 import { AuthContext } from "../../../contexts/AuthProvider/AuthProvider";
 
 const Story = () => {
@@ -77,7 +76,7 @@ const Story = () => {
               key={index}
               src={story.photo}
               alt=""
-              className="className=h-40 w-[133px] rounded-lg mr-3"
+              className="h-[200px] w-[133px] rounded-lg mr-3"
             />
           ))}
       </div>

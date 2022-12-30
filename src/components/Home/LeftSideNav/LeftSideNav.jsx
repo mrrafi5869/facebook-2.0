@@ -8,10 +8,10 @@ const LeftSideNav = () => {
     const {user} = useContext(AuthContext);
     return (
         <div className='bg-gray-800 p-3 h-full left-side'>
-            <div className='flex items-center mb-6'>
+            <label htmlFor='my-modal-3' className='flex items-center mb-6 cursor-pointer'>
                 <img src={user?.uid && user?.photoURL} alt="" className='w-9 h-9 rounded-full mr-2' />
                 <h2 className='text-white font-semibold'>{user?.uid && user.displayName}</h2>
-            </div>
+            </label>
             <div className='flex items-center mb-6'>
                 <FontAwesomeIcon icon={faUserFriends} className="mr-4 text-2xl text-blue-500"></FontAwesomeIcon>
                 <h2 className='text-white font-semibold'>Friends</h2>

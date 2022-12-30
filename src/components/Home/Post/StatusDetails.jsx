@@ -1,29 +1,15 @@
-import {
-  faComment,
-  faEllipsis,
-  faL,
-  faShare,
-  faThumbsUp,
-  faX,
-} from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { PaperAirplaneIcon } from "@heroicons/react/24/solid";
-import React, { useContext, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import { AuthContext } from "../../../contexts/AuthProvider/AuthProvider";
+import { faComment, faEllipsis, faShare, faThumbsUp, faX } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { PaperAirplaneIcon } from '@heroicons/react/24/solid';
+import React, { useContext, useState } from 'react';
+import { useLoaderData } from 'react-router-dom';
+import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
 
-const Status = () => {
-  const [allStatus, setAllStatus] = useState([]);
+const StatusDetails = () => {
+    const {comment} = useLoaderData();
+    const [allStatus, setAllStatus] = useState([]);
   const [like, setLike] = useState(false);
   const { user } = useContext(AuthContext);
-
-  useEffect(() => {
-    fetch("http://localhost:5000/allStatus")
-      .then((res) => res.json())
-      .then((data) => setAllStatus(data));
-  }, [allStatus]);
-
-
   const handleComment = (event) => {
     event.preventDefault();
     const form = event.target;
@@ -45,11 +31,8 @@ const Status = () => {
         }
       });
   };
-  return (
-    <div>
-      {allStatus &&
-        allStatus.map((status, index) => (
-          <div key={index} className="mx-auto my-4 p-2 bg-zinc-800 rounded-lg">
+    return (
+        <div className="mx-auto my-56 p-2 bg-zinc-800 rounded-lg h-[500px]">
             <div className="flex justify-between px-3 py-1">
               <div className="flex">
                 <img
@@ -70,13 +53,12 @@ const Status = () => {
               </div>
             </div>
             <p className="text-center font-semibold bg-yellow-300 p-5 mt-1 text-black text-3xl">
-              {status.status}
+              {comment}
             </p>
             <div className="flex justify-between mt-2">
               <span>
-                <p>Like {status._id}</p>
+                <p>Like</p>
               </span>
-              <Link to={`/statusDetails/${status._id}`} className="underline">Details</Link>
             </div>
             <hr className="border border-gray-400" />
             <div className="flex justify-between mb-2 p-2">
@@ -126,14 +108,12 @@ const Status = () => {
               <input
                 type="text"
                 name="postId"
-                defaultValue={status._id}
+                // defaultValue={status._id}
                 className="image-input input input-bordered w-full max-w-xs mt-3 rounded-xl p-7 mr-2"
               />
             </form>
           </div>
-        ))}
-    </div>
-  );
+    );
 };
 
-export default Status;
+export default StatusDetails;

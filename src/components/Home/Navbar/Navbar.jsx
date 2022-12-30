@@ -27,7 +27,7 @@ const Navbar = () => {
       console.log(data);
       setUserInfo(data)
     })
-  } ,[userInfo])
+  } ,[user?.email, logOut]);
   const navigate = useNavigate();
   const loggingOut = () => {
     logOut()
