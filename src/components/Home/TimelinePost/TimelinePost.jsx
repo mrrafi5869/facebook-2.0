@@ -16,7 +16,7 @@ const TimelinePost = () => {
   const [timelinePosts, setTimelinePosts] = useState([]);
   const [like, setLike] = useState(false);
   useEffect(() => {
-    fetch("http://localhost:5000/posts")
+    fetch("https://job-task-server-jet.vercel.app/posts")
       .then((res) => res.json())
       .then((data) => {
         setTimelinePosts(data);

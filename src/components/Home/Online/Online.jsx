@@ -5,7 +5,7 @@ const Online = () => {
     const {user} = useContext(AuthContext);
     const [users, setUsers] = useState();
     useEffect(() => {
-        fetch("http://localhost:5000/users")
+        fetch("https://job-task-server-jet.vercel.app/users")
         .then(res => res.json())
         .then(data => {
             setUsers(data);

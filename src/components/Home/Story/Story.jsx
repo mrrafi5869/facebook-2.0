@@ -8,7 +8,7 @@ const Story = () => {
   const [stories, setStories] = useState([]);
   useEffect(() => {
     // stories
-    fetch("http://localhost:5000/stories")
+    fetch("https://job-task-server-jet.vercel.app/stories")
       .then((res) => res.json())
       .then((data) => {
         setStories(data);
@@ -37,7 +37,7 @@ const Story = () => {
     // story upload on mongodb
     const story = (photo) => {
       const story = { photo };
-      fetch("http://localhost:5000/story", {
+      fetch("https://job-task-server-jet.vercel.app/story", {
         method: "POST",
         headers: {
           "content-type": "application/json",

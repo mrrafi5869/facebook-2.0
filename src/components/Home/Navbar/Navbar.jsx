@@ -21,7 +21,7 @@ const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
   const [userInfo, setUserInfo] = useState({});
   useEffect(() => {
-    fetch(`http://localhost:5000/user?email=${user?.email}`)
+    fetch(`https://job-task-server-jet.vercel.app/user?email=${user?.email}`)
     .then(res => res.json())
     .then(data => {
       console.log(data);

@@ -18,7 +18,7 @@ const Status = () => {
   const { user } = useContext(AuthContext);
 
   useEffect(() => {
-    fetch("http://localhost:5000/allStatus")
+    fetch("https://job-task-server-jet.vercel.app/allStatus")
       .then((res) => res.json())
       .then((data) => setAllStatus(data));
   }, [allStatus]);
@@ -30,7 +30,7 @@ const Status = () => {
     const comment = form.comment.value;
     const postId = form.postId.value;
     const saveComment = { comment, postId };
-    fetch("http://localhost:5000/comment", {
+    fetch("https://job-task-server-jet.vercel.app/comment", {
       method: "POST",
       headers: {
         "content-type": "application/json",

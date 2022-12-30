@@ -22,7 +22,7 @@ const router = createBrowserRouter([
             },
             {
                 path: "/statusDetails/:id",
-                loader: ({params}) => fetch(`http://localhost:5000/comments/${params.id}`),
+                loader: ({params}) => fetch(`https://job-task-server-jet.vercel.app/comments/${params.id}`),
                 element: <PrivateRoute><StatusDetails></StatusDetails></PrivateRoute>
             },
             

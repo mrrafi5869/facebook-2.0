@@ -15,7 +15,7 @@ const Post = () => {
     const form = event.target;
     const status = form.status.value;
     const statusText = {status};
-    fetch("http://localhost:5000/status", {
+    fetch("https://job-task-server-jet.vercel.app/status", {
       method: "POST",
       headers: {
         "content-type": "application/json",

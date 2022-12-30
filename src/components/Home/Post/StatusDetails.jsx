@@ -15,7 +15,7 @@ const StatusDetails = () => {
     const comment = form.comment.value;
     const postId = form.postId.value;
     const saveComment = { comment, postId };
-    fetch("http://localhost:5000/comment", {
+    fetch("https://job-task-server-jet.vercel.app/comment", {
       method: "POST",
       headers: {
         "content-type": "application/json",

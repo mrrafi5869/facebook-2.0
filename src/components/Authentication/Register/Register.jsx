@@ -71,7 +71,7 @@ const Register = () => {
       });
     const saveUser = (name, versity, number, address, email, photo) => {
       const user = { name, versity, number, address, email, photo };
-      fetch("http://localhost:5000/user", {
+      fetch("https://job-task-server-jet.vercel.app/user", {
         method: "POST",
         headers: {
           "content-type": "application/json",

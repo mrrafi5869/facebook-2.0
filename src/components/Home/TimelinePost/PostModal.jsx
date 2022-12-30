@@ -30,7 +30,7 @@ const PostModal = () => {
     // post upload on mongodb
     const post = (userName, userPhoto, caption, photo) => {
       const post = { userName, userPhoto, caption, photo };
-      fetch("http://localhost:5000/post", {
+      fetch("https://job-task-server-jet.vercel.app/post", {
         method: "POST",
         headers: {
           "content-type": "application/json",
