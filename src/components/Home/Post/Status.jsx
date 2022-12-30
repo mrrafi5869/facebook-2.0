@@ -74,7 +74,7 @@ const Status = () => {
             </p>
             <div className="flex justify-between mt-2">
               <span>
-                <p>Like {status._id}</p>
+                <p>Like</p>
               </span>
               <Link to={`/statusDetails/${status._id}`} className="underline">Details</Link>
             </div>

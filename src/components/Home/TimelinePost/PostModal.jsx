@@ -4,7 +4,8 @@ import React, { useContext } from "react";
 import { AuthContext } from "../../../contexts/AuthProvider/AuthProvider";
 
 const PostModal = () => {
-  const { user } = useContext(AuthContext);
+  const { user, loading, setLoading } = useContext(AuthContext);
+  
   const imageHostKey = process.env.REACT_APP_imgbb_key;
 
   const handlePost = (event) => {
@@ -24,11 +25,11 @@ const PostModal = () => {
       .then((data) => {
         console.log(data.data.url);
         // story function called
-        post(caption, data.data.url);
+        post(user?.displayName, user?.photoURL, caption, data.data.url);
       });
     // post upload on mongodb
-    const post = (caption, photo) => {
-      const post = { caption, photo };
+    const post = (userName, userPhoto, caption, photo) => {
+      const post = { userName, userPhoto, caption, photo };
       fetch("http://localhost:5000/post", {
         method: "POST",
         headers: {
@@ -38,7 +39,9 @@ const PostModal = () => {
       })
         .then((res) => res.json())
         .then((data) => {
-          console.log(data);
+          if(data.acknowledged){
+            event.target.reset();
+          }
         });
     };
   };
@@ -97,11 +100,15 @@ const PostModal = () => {
               </p>
             </div>
           </label>
-          <button className="btn w-full btn-active btn-ghost my-3 rounded-lg">
-          <label htmlFor="my-modal-1">
-            Post
-          </label>
+          <div>
+          <button className={`btn w-full btn-active btn-ghost my-3 rounded-lg`}>
+          {loading ? (
+            <button className="btn btn-square loading"></button>
+          ) : (            
+            "Post"
+          )}
           </button>
+          </div>
           <input
             id="post"
             name="image"

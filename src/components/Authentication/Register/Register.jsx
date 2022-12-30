@@ -8,7 +8,6 @@ import { faCloudUpload, faUpload } from "@fortawesome/free-solid-svg-icons";
 
 const Register = () => {
   const [error, setError] = useState("");
-  const [user, setUser] = useState([]);
   const { createUser, updateUser, setLoading, loading } =
     useContext(AuthContext);
   const navigate = useNavigate();
@@ -185,6 +184,7 @@ const Register = () => {
           {loading ? (
             <button className="btn btn-square loading"></button>
           ) : (
+
             "SignUp"
           )}
         </button>

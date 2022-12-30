@@ -30,12 +30,12 @@ const TimelinePost = () => {
             <div className="flex justify-between px-5 py-3">
               <div className="flex">
                 <img
-                  src={user?.uid && user?.photoURL}
+                  src={post.userPhoto}
                   className="mr-3 h-10 w-10 rounded-full"
                   alt=""
                 />
                 <p className="font-semibold">
-                  {user?.uid && user?.displayName}
+                  {post.userName}
                 </p>
               </div>
               <div className="flex">

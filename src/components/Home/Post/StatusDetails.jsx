@@ -7,7 +7,6 @@ import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
 
 const StatusDetails = () => {
     const {comment} = useLoaderData();
-    const [allStatus, setAllStatus] = useState([]);
   const [like, setLike] = useState(false);
   const { user } = useContext(AuthContext);
   const handleComment = (event) => {
@@ -53,7 +52,7 @@ const StatusDetails = () => {
               </div>
             </div>
             <p className="text-center font-semibold bg-yellow-300 p-5 mt-1 text-black text-3xl">
-              {comment}
+              Working...
             </p>
             <div className="flex justify-between mt-2">
               <span>
