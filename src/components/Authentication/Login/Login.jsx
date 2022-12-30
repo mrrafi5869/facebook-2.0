@@ -1,12 +1,30 @@
 import React, { useContext, useState } from "react";
-import { toast } from "react-hot-toast";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../contexts/AuthProvider/AuthProvider";
+import { FaGoogle } from "react-icons/fa";
+import { GoogleAuthProvider } from "firebase/auth";
+const googleProvider = new GoogleAuthProvider();
 
 const Login = () => {
   const [error, setError] = useState("");
-  const { signIn,setLoading, loading } = useContext(AuthContext);
+  const { signIn, setLoading, loading, googleSignIn } = useContext(AuthContext);
+
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
   const navigate = useNavigate();
+  const handleGoogleLogin = () => {
+    googleSignIn(googleProvider)
+      .then((result) => {
+        const user = result.user;
+        navigate(from, { replace: true });
+        setError("")
+        console.log(user);
+      })
+      .catch((err) => {
+        console.error(err);
+        setError(err);
+      });
+  };
   const handleLogin = (event) => {
     event.preventDefault();
     const form = event.target;
@@ -15,7 +33,7 @@ const Login = () => {
     signIn(email, password)
       .then((result) => {
         const user = result.user;
-        navigate("/");
+        navigate(from, { replace: true });
         setError("");
       })
       .catch((err) => {
@@ -23,6 +41,7 @@ const Login = () => {
         setLoading(false);
       });
   };
+
   return (
     <form
       className="bg-white w-96 mx-auto my-32 rounded-[30px] text-center"
@@ -53,6 +72,12 @@ const Login = () => {
           )}
         </button>
       </div>
+      <button
+        className="btn w-full btn-outline max-w-xs"
+        onClick={handleGoogleLogin}
+      >
+        <FaGoogle className="text-3xl text-blue-600"></FaGoogle>
+      </button>
       <p className="text-sky-500 my-3">
         Don't have an Account?Please{" "}
         <Link

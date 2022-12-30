@@ -32,7 +32,7 @@ const Navbar = () => {
   const loggingOut = () => {
     logOut()
       .then(() => {
-        navigate("/register");
+        navigate("/login");
       })
       .catch((err) => console.error(err));
   };
